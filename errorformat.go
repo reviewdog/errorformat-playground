@@ -1,3 +1,6 @@
+//go:generate gopherjs build .
+
+// Main package for https://github.com/gopherjs/gopherjs.
 package main
 
 import (
