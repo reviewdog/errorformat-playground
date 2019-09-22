@@ -1,6 +1,8 @@
 #container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 10px;
+  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
 
 #efms,
@@ -11,7 +13,21 @@
   width: 90%;
 }
 
+pre,
+#efms,
+#text,
+#result {
+  font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
 #error {
   margin: 10px;
   color: red;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: bold;
 }

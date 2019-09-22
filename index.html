@@ -2,24 +2,32 @@
   <head>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="main.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" type="text/css" charset="utf-8">
     <script src="errorformat-web.js"></script>
     <script src="main.js"></script>
   </head>
   <body>
     <div id="container">
       <h1>errorformat playground</h1>
+      <p>
+        GitHub: <a href="https://github.com/reviewdog/errorformat">reviewdog/errorformat</a>
+        <br>
+        Document: <a href="https://vim-jp.org/vimdoc-en/quickfix.html#error-file-format">:h error-file-format</a>
+      </p>
       <div>
-        <label for="efms">Errorformats</label>
+        <label class="label" for="efms">Errorformats</label>
+        <p>You can put multiple errorformats separated by a line break.</p>
         <textarea id="efms" rows="5"></textarea>
       </div>
       <div>
-        <label for="text">Text</label>
+        <label class="label" for="text">Text</label>
         <textarea id="text" rows="15"></textarea>
       </div>
       <div><button onclick="run();">Run</button></div>
       <div id="error"></div>
       <div>
         <h2>Result</h2>
+        <p>JSON array of <a href="https://godoc.org/github.com/reviewdog/errorformat#Entry">errorformat.Entry</a></p>
         <pre id="result"></pre>
       </div>
     </div>
