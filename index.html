@@ -17,11 +17,11 @@
       <div>
         <label class="label" for="efms">Errorformats</label>
         <p>You can put multiple errorformats separated by a line break.</p>
-        <textarea id="efms" rows="5"></textarea>
+        <textarea id="efms" rows="5" placeholder="%f:%l:%c: %m&#10;%-G%.%#"></textarea>
       </div>
       <div>
         <label class="label" for="text">Text</label>
-        <textarea id="text" rows="15"></textarea>
+        <textarea id="text" rows="15" placeholder="golint.new.go:3:5: exported var V should have comment or be unexported&#10;golint.new.go:5:5: exported var NewError1 should have comment or be unexported&#10;"></textarea>
       </div>
       <div><button onclick="run();">Run</button></div>
       <div id="error"></div>
