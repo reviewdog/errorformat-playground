@@ -1,7 +1,27 @@
 <html>
   <head>
     <meta charset="utf-8"/>
+    <link rel="stylesheet" href="main.css" type="text/css" charset="utf-8">
     <script src="errorformat-web.js"></script>
+    <script src="main.js"></script>
   </head>
-  <body></body>
+  <body>
+    <div id="container">
+      <h1>errorformat playground</h1>
+      <div>
+        <label for="efms">Errorformats</label>
+        <textarea id="efms" rows="5"></textarea>
+      </div>
+      <div>
+        <label for="text">Text</label>
+        <textarea id="text" rows="15"></textarea>
+      </div>
+      <div><button onclick="run();">Run</button></div>
+      <div id="error"></div>
+      <div>
+        <h2>Result</h2>
+        <pre id="result"></pre>
+      </div>
+    </div>
+  </body>
 </html>

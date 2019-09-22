@@ -1,0 +1,17 @@
+#container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#efms,
+#text,
+#result {
+  display: block;
+  margin: 10px;
+  width: 90%;
+}
+
+#error {
+  margin: 10px;
+  color: red;
+}
