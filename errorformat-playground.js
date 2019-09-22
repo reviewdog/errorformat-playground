@@ -34248,7 +34248,7 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 	$pkg.$init = $init;
 	return $pkg;
 })();
-$packages["github.com/reviewdog/errorformat-web"] = (function() {
+$packages["github.com/reviewdog/errorformat-playground"] = (function() {
 	var $pkg = {}, $init, json, js, errorformat, strings, sliceType, funcType, mapType, ptrType, sliceType$1, main, Errorformat;
 	json = $packages["encoding/json"];
 	js = $packages["github.com/gopherjs/gopherjs/js"];
@@ -34313,10 +34313,10 @@ $packages["github.com/reviewdog/errorformat-web"] = (function() {
 	return $pkg;
 })();
 $synthesizeMethods();
-var $mainPkg = $packages["github.com/reviewdog/errorformat-web"];
+var $mainPkg = $packages["github.com/reviewdog/errorformat-playground"];
 $packages["runtime"].$init();
 $go($mainPkg.$init, []);
 $flushConsole();
 
 }).call(this);
-//# sourceMappingURL=errorformat-web.js.map
+//# sourceMappingURL=errorformat-playground.js.map
