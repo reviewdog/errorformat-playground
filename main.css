@@ -31,3 +31,7 @@ pre,
   font-size: 18px;
   font-weight: bold;
 }
+
+#container .github-fork-ribbon:before {
+  background-color: #090;
+}
