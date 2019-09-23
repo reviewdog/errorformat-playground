@@ -16,7 +16,7 @@ function run() {
 }
 
 function showError(error) {
-  document.getElementById('error').innerText = error; 
+  document.getElementById('error').innerText = error;
 }
 
 function clearError() {
