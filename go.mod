@@ -4,5 +4,5 @@ go 1.12
 
 require (
 	github.com/gopherjs/gopherjs v0.0.0-20200217142428-fce0ec30dd00
-	github.com/reviewdog/errorformat v0.0.0-20200718103534-732d4abf7a25
+	github.com/reviewdog/errorformat v0.0.0-20200813150006-94458edd948a
 )
