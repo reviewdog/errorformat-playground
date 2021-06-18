@@ -7,6 +7,7 @@ github.com/gopherjs/gopherjs v0.0.0-20200217142428-fce0ec30dd00/go.mod h1:wJfORR
 github.com/haya14busa/go-checkstyle v0.0.0-20170303121022-5e9d09f51fa1/go.mod h1:RsN5RGgVYeXpcXNtWyztD5VIe7VNSEqpJvF2iEH7QvI=
 github.com/haya14busa/go-sarif v0.0.0-20200630141737-3c4893c6d735/go.mod h1:1Hkn3JseGMB/hv1ywzkapVQDWV3bFgp6POZobZmR/5g=
 github.com/haya14busa/go-sarif v0.0.0-20200721090635-d2343efc5d00/go.mod h1:1Hkn3JseGMB/hv1ywzkapVQDWV3bFgp6POZobZmR/5g=
+github.com/haya14busa/go-sarif v0.0.0-20210102043135-e2c5fed2fa3d/go.mod h1:1Hkn3JseGMB/hv1ywzkapVQDWV3bFgp6POZobZmR/5g=
 github.com/reviewdog/errorformat v0.0.0-20190922191035-8e3d11c5cd1b h1:k8rOuDDX1Qp3dYxBljj1+KmLt3kP1sUbiRM/rADJHSI=
 github.com/reviewdog/errorformat v0.0.0-20190922191035-8e3d11c5cd1b/go.mod h1:giYAXnpegRDPsXUO7TRpDKXJo1lFGYxyWRfEt5iQ+OA=
 github.com/reviewdog/errorformat v0.0.0-20190922193611-a885a245ae0b h1:NABkU7TlpmdWxLPqjEDhFmsRolT7/d3hOPDj3LlnUmQ=
@@ -33,3 +34,5 @@ github.com/reviewdog/errorformat v0.0.0-20200929113217-87743a11f4be h1:IpDdiXYYO
 github.com/reviewdog/errorformat v0.0.0-20200929113217-87743a11f4be/go.mod h1:Akd5vemrJaAHgnEOFrC4yMbEKaOsddwF1LKkfovSFI8=
 github.com/reviewdog/errorformat v0.0.0-20201020160743-a656ed371170 h1:mXnYP0Ar2dpAorxqoIERETwelsF8jkOR3BWPU4ByTH4=
 github.com/reviewdog/errorformat v0.0.0-20201020160743-a656ed371170/go.mod h1:Akd5vemrJaAHgnEOFrC4yMbEKaOsddwF1LKkfovSFI8=
+github.com/reviewdog/errorformat v0.0.0-20210517100703-fd739bda5dda h1:5Y9XKToBKO/WPJ9qq30nvpu9DUNy+nwvT8vcSwk/n8w=
+github.com/reviewdog/errorformat v0.0.0-20210517100703-fd739bda5dda/go.mod h1:AqhrP0G7F9YRROF10JQwdd4cNO8bdm6bY6KzcOc3Cp8=
