@@ -33964,10 +33964,10 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 			/* } else if (strchar("CZ", idx)) { */ case 23:
 				if (!s.qi.multiignore) {
 					qfprev = (x$3 = s.qi.qflist, x$4 = s.qi.qflist.$length - 1 >> 0, ((x$4 < 0 || x$4 >= x$3.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$3.$array[x$3.$offset + x$4]));
-					qfprev.Lines = $append(qfprev.Lines, line);
 					if (qfprev === ptrType$4.nil) {
 						$s = -1; return [0, ptrType$6.nil];
 					}
+					qfprev.Lines = $append(qfprev.Lines, line);
 					if (!(fields.errmsg === "") && !s.qi.multiignore) {
 						if (qfprev.Text === "") {
 							qfprev.Text = fields.errmsg;
@@ -33980,6 +33980,9 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 					}
 					if (!((fields.etype === 0)) && (qfprev.Type === 0)) {
 						qfprev.Type = ((fields.etype >> 0));
+					}
+					if (qfprev.Filename === "") {
+						qfprev.Filename = fields.namebuf;
 					}
 					if (qfprev.Lnum === 0) {
 						qfprev.Lnum = fields.lnum;
