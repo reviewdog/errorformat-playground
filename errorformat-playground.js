@@ -33519,7 +33519,7 @@ $packages["regexp"] = (function() {
 	return $pkg;
 })();
 $packages["github.com/reviewdog/errorformat"] = (function() {
-	var $pkg = {}, $init, bufio, bytes, errors, fmt, io, regexp, strconv, strings, Errorformat, Scanner, qfinfo, qffields, Entry, qfstatus, Efm, Match, ptrType, sliceType, ptrType$1, ptrType$2, ptrType$3, ptrType$4, sliceType$1, sliceType$2, sliceType$3, ptrType$5, ptrType$6, sliceType$4, ptrType$7, ptrType$8, fmtpattern, fileexists, NewErrorformat, NewEfm, strchar, mustAtoI;
+	var $pkg = {}, $init, bufio, bytes, errors, fmt, io, regexp, strconv, strings, Errorformat, Scanner, qfinfo, qffields, Entry, qfstatus, Efm, Match, ptrType, sliceType, ptrType$1, ptrType$2, ptrType$3, ptrType$4, sliceType$1, sliceType$2, ptrType$5, sliceType$3, sliceType$4, ptrType$6, ptrType$7, ptrType$8, ptrType$9, fmtpattern, fileexists, NewErrorformat, NewEfm, strchar, mustAtoI;
 	bufio = $packages["bufio"];
 	bytes = $packages["bytes"];
 	errors = $packages["errors"];
@@ -33574,13 +33574,15 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 		this.multiignore = multiignore_;
 		this.qflist = qflist_;
 	});
-	qffields = $pkg.qffields = $newType(0, $kindStruct, "errorformat.qffields", true, "github.com/reviewdog/errorformat", false, function(namebuf_, errmsg_, lnum_, col_, useviscol_, pattern_, enr_, etype_, valid_, lines_) {
+	qffields = $pkg.qffields = $newType(0, $kindStruct, "errorformat.qffields", true, "github.com/reviewdog/errorformat", false, function(namebuf_, errmsg_, lnum_, col_, endlnum_, endcol_, useviscol_, pattern_, enr_, etype_, valid_, lines_) {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.namebuf = "";
 			this.errmsg = "";
 			this.lnum = 0;
 			this.col = 0;
+			this.endlnum = 0;
+			this.endcol = 0;
 			this.useviscol = false;
 			this.pattern = "";
 			this.enr = 0;
@@ -33593,6 +33595,8 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 		this.errmsg = errmsg_;
 		this.lnum = lnum_;
 		this.col = col_;
+		this.endlnum = endlnum_;
+		this.endcol = endcol_;
 		this.useviscol = useviscol_;
 		this.pattern = pattern_;
 		this.enr = enr_;
@@ -33600,12 +33604,14 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 		this.valid = valid_;
 		this.lines = lines_;
 	});
-	Entry = $pkg.Entry = $newType(0, $kindStruct, "errorformat.Entry", true, "github.com/reviewdog/errorformat", true, function(Filename_, Lnum_, Col_, Vcol_, Nr_, Pattern_, Text_, Type_, Valid_, Lines_) {
+	Entry = $pkg.Entry = $newType(0, $kindStruct, "errorformat.Entry", true, "github.com/reviewdog/errorformat", true, function(Filename_, Lnum_, EndLnum_, Col_, EndCol_, Vcol_, Nr_, Pattern_, Text_, Type_, Valid_, Lines_) {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.Filename = "";
 			this.Lnum = 0;
+			this.EndLnum = 0;
 			this.Col = 0;
+			this.EndCol = 0;
 			this.Vcol = false;
 			this.Nr = 0;
 			this.Pattern = "";
@@ -33617,7 +33623,9 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 		}
 		this.Filename = Filename_;
 		this.Lnum = Lnum_;
+		this.EndLnum = EndLnum_;
 		this.Col = Col_;
+		this.EndCol = EndCol_;
 		this.Vcol = Vcol_;
 		this.Nr = Nr_;
 		this.Pattern = Pattern_;
@@ -33630,7 +33638,7 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 	Efm = $pkg.Efm = $newType(0, $kindStruct, "errorformat.Efm", true, "github.com/reviewdog/errorformat", true, function(regex_, flagplus_, flagminus_, prefix_) {
 		this.$val = this;
 		if (arguments.length === 0) {
-			this.regex = ptrType$7.nil;
+			this.regex = ptrType$8.nil;
 			this.flagplus = false;
 			this.flagminus = false;
 			this.prefix = 0;
@@ -33641,7 +33649,7 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 		this.flagminus = flagminus_;
 		this.prefix = prefix_;
 	});
-	Match = $pkg.Match = $newType(0, $kindStruct, "errorformat.Match", true, "github.com/reviewdog/errorformat", true, function(F_, N_, L_, C_, T_, M_, R_, P_, V_, S_) {
+	Match = $pkg.Match = $newType(0, $kindStruct, "errorformat.Match", true, "github.com/reviewdog/errorformat", true, function(F_, N_, L_, C_, T_, M_, R_, P_, V_, S_, E_, K_) {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.F = "";
@@ -33654,6 +33662,8 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 			this.P = "";
 			this.V = 0;
 			this.S = "";
+			this.E = 0;
+			this.K = 0;
 			return;
 		}
 		this.F = F_;
@@ -33666,6 +33676,8 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 		this.P = P_;
 		this.V = V_;
 		this.S = S_;
+		this.E = E_;
+		this.K = K_;
 	});
 	ptrType = $ptrType(Efm);
 	sliceType = $sliceType(ptrType);
@@ -33675,12 +33687,13 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 	ptrType$4 = $ptrType(Entry);
 	sliceType$1 = $sliceType($String);
 	sliceType$2 = $sliceType(ptrType$4);
-	sliceType$3 = $sliceType($emptyInterface);
-	ptrType$5 = $ptrType(Match);
-	ptrType$6 = $ptrType(qffields);
-	sliceType$4 = $sliceType($Uint8);
-	ptrType$7 = $ptrType(regexp.Regexp);
-	ptrType$8 = $ptrType(Scanner);
+	ptrType$5 = $ptrType(strings.Builder);
+	sliceType$3 = $sliceType($Uint8);
+	sliceType$4 = $sliceType($emptyInterface);
+	ptrType$6 = $ptrType(Match);
+	ptrType$7 = $ptrType(qffields);
+	ptrType$8 = $ptrType(regexp.Regexp);
+	ptrType$9 = $ptrType(Scanner);
 	NewErrorformat = function(efms) {
 		var _i, _r, _ref, _tuple, e, efm, efms, err, errorformat, $s, $r;
 		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; _i = $f._i; _r = $f._r; _ref = $f._ref; _tuple = $f._tuple; e = $f.e; efm = $f.efm; efms = $f.efms; err = $f.err; errorformat = $f.errorformat; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
@@ -33711,30 +33724,50 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 	};
 	Errorformat.prototype.NewScanner = function(r) { return this.$val.NewScanner(r); };
 	Entry.ptr.prototype.String = function() {
-		var _r, _r$1, e, s, t, $s, $r;
-		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; _r = $f._r; _r$1 = $f._r$1; e = $f.e; s = $f.s; t = $f.t; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+		var _r, _r$1, _r$2, _r$3, _r$4, _r$5, b, e, t, $s, $r;
+		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; _r$3 = $f._r$3; _r$4 = $f._r$4; _r$5 = $f._r$5; b = $f.b; e = $f.e; t = $f.t; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
 		e = this;
-		_r = fmt.Sprintf("%s|", new sliceType$3([new $String(e.Filename)])); /* */ $s = 1; case 1: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
-		s = _r;
-		if (e.Lnum > 0) {
-			s = s + (strconv.Itoa(e.Lnum));
-		}
-		/* */ if (e.Col > 0) { $s = 2; continue; }
-		/* */ $s = 3; continue;
-		/* if (e.Col > 0) { */ case 2:
-			_r$1 = fmt.Sprintf(" col %d", new sliceType$3([new $Int(e.Col)])); /* */ $s = 4; case 4: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-			s = s + (_r$1);
-		/* } */ case 3:
+		b = new strings.Builder.ptr(ptrType$5.nil, sliceType$3.nil);
+		b.WriteString(e.Filename);
+		b.WriteRune(124);
+		/* */ if (e.Lnum > 0) { $s = 1; continue; }
+		/* */ $s = 2; continue;
+		/* if (e.Lnum > 0) { */ case 1:
+			b.WriteString(strconv.Itoa(e.Lnum));
+			/* */ if (e.EndLnum > 0) { $s = 3; continue; }
+			/* */ $s = 4; continue;
+			/* if (e.EndLnum > 0) { */ case 3:
+				_r = fmt.Sprintf("-%d", new sliceType$4([new $Int(e.EndLnum)])); /* */ $s = 5; case 5: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+				_r$1 = b.WriteString(_r); /* */ $s = 6; case 6: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+				_r$1;
+			/* } */ case 4:
+		/* } */ case 2:
+		/* */ if (e.Col > 0) { $s = 7; continue; }
+		/* */ $s = 8; continue;
+		/* if (e.Col > 0) { */ case 7:
+			_r$2 = fmt.Sprintf(" col %d", new sliceType$4([new $Int(e.Col)])); /* */ $s = 9; case 9: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			_r$3 = b.WriteString(_r$2); /* */ $s = 10; case 10: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			_r$3;
+			/* */ if (e.EndCol > 0) { $s = 11; continue; }
+			/* */ $s = 12; continue;
+			/* if (e.EndCol > 0) { */ case 11:
+				_r$4 = fmt.Sprintf("-%d", new sliceType$4([new $Int(e.EndCol)])); /* */ $s = 13; case 13: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+				_r$5 = b.WriteString(_r$4); /* */ $s = 14; case 14: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
+				_r$5;
+			/* } */ case 12:
+		/* } */ case 8:
 		t = e.Types();
 		if (!(t === "")) {
-			s = s + (" " + t);
+			b.WriteRune(32);
+			b.WriteString(t);
 		}
-		s = s + ("|");
+		b.WriteRune(124);
 		if (!(e.Text === "")) {
-			s = s + (" " + e.Text);
+			b.WriteRune(32);
+			b.WriteString(e.Text);
 		}
-		$s = -1; return s;
-		/* */ } return; } if ($f === undefined) { $f = { $blk: Entry.ptr.prototype.String }; } $f._r = _r; $f._r$1 = _r$1; $f.e = e; $f.s = s; $f.t = t; $f.$s = $s; $f.$r = $r; return $f;
+		$s = -1; return b.String();
+		/* */ } return; } if ($f === undefined) { $f = { $blk: Entry.ptr.prototype.String }; } $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._r$3 = _r$3; $f._r$4 = _r$4; $f._r$5 = _r$5; $f.b = b; $f.e = e; $f.t = t; $f.$s = $s; $f.$r = $r; return $f;
 	};
 	Entry.prototype.String = function() { return this.$val.String(); };
 	Entry.ptr.prototype.Types = function() {
@@ -33752,6 +33785,8 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 			s = "warning";
 		} else if ((_1 === (105)) || (_1 === (73))) {
 			s = "info";
+		} else if ((_1 === (110)) || (_1 === (78))) {
+			s = "note";
 		} else {
 			s = ($encodeRune(e.Type));
 		}
@@ -33790,7 +33825,7 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 			if (!s.mlpoped) {
 				lastml = (x$2 = s.qi.qflist, x$3 = s.qi.qflist.$length - 1 >> 0, ((x$3 < 0 || x$3 >= x$2.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$2.$array[x$2.$offset + x$3]));
 			}
-			qfl = new Entry.ptr(fields.namebuf, fields.lnum, fields.col, fields.useviscol, fields.enr, fields.pattern, fields.errmsg, ((fields.etype >> 0)), fields.valid, fields.lines);
+			qfl = new Entry.ptr(fields.namebuf, fields.lnum, fields.endlnum, fields.col, fields.endcol, fields.useviscol, fields.enr, fields.pattern, fields.errmsg, ((fields.etype >> 0)), fields.valid, fields.lines);
 			if (qfl.Filename === "" && !(s.qi.currfile === "")) {
 				qfl.Filename = s.qi.currfile;
 			}
@@ -33834,7 +33869,7 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 		var _i, _r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _ref, _rune, _v, _v$1, efm, fields, i, idx, line, m, nomatch, qfprev, r, s, tail, x, x$1, x$2, x$3, x$4, x$5, x$6, $s, $r;
 		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; _i = $f._i; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; _r$3 = $f._r$3; _r$4 = $f._r$4; _r$5 = $f._r$5; _r$6 = $f._r$6; _ref = $f._ref; _rune = $f._rune; _v = $f._v; _v$1 = $f._v$1; efm = $f.efm; fields = $f.fields; i = $f.i; idx = $f.idx; line = $f.line; m = $f.m; nomatch = $f.nomatch; qfprev = $f.qfprev; r = $f.r; s = $f.s; tail = $f.tail; x = $f.x; x$1 = $f.x$1; x$2 = $f.x$2; x$3 = $f.x$3; x$4 = $f.x$4; x$5 = $f.x$5; x$6 = $f.x$6; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
 		s = this;
-		fields = new qffields.ptr("", "", 0, 0, false, "", -1, 0, true, new sliceType$1([line]));
+		fields = new qffields.ptr("", "", 0, 0, 0, 0, false, "", -1, 0, true, new sliceType$1([line]));
 		tail = "";
 		idx = 0;
 		nomatch = false;
@@ -33861,9 +33896,9 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 			/* } */ case 6:
 			_r = efm.Match(line); /* */ $s = 7; case 7: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
 			r = _r;
-			/* */ if (r === ptrType$5.nil) { $s = 8; continue; }
+			/* */ if (r === ptrType$6.nil) { $s = 8; continue; }
 			/* */ $s = 9; continue;
-			/* if (r === ptrType$5.nil) { */ case 8:
+			/* if (r === ptrType$6.nil) { */ case 8:
 				i = i + (1) >> 0;
 				/* continue; */ $s = 1; continue;
 			/* } */ case 9:
@@ -33886,7 +33921,9 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 			/* } */ case 11:
 			fields.enr = r.N;
 			fields.lnum = r.L;
+			fields.endlnum = r.E;
 			fields.col = r.C;
+			fields.endcol = r.K;
 			if (!((r.T === 0))) {
 				fields.etype = r.T;
 			}
@@ -33921,7 +33958,7 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 			/* */ if (!(r.S === "")) { $s = 16; continue; }
 			/* */ $s = 17; continue;
 			/* if (!(r.S === "")) { */ case 16:
-				_r$3 = fmt.Sprintf("^%v$", new sliceType$3([new $String(regexp.QuoteMeta(r.S))])); /* */ $s = 18; case 18: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+				_r$3 = fmt.Sprintf("^%v$", new sliceType$4([new $String(regexp.QuoteMeta(r.S))])); /* */ $s = 18; case 18: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 				fields.pattern = _r$3;
 			/* } */ case 17:
 			/* break; */ $s = 2; continue;
@@ -33934,7 +33971,7 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 			if (!nomatch) {
 				if (idx === 68) {
 					if (fields.namebuf === "") {
-						$s = -1; return [0, ptrType$6.nil];
+						$s = -1; return [0, ptrType$7.nil];
 					}
 					s.qi.directory = fields.namebuf;
 					s.qi.dirstack = $append(s.qi.dirstack, s.qi.directory);
@@ -33965,7 +34002,7 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 				if (!s.qi.multiignore) {
 					qfprev = (x$3 = s.qi.qflist, x$4 = s.qi.qflist.$length - 1 >> 0, ((x$4 < 0 || x$4 >= x$3.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$3.$array[x$3.$offset + x$4]));
 					if (qfprev === ptrType$4.nil) {
-						$s = -1; return [0, ptrType$6.nil];
+						$s = -1; return [0, ptrType$7.nil];
 					}
 					qfprev.Lines = $append(qfprev.Lines, line);
 					if (!(fields.errmsg === "") && !s.qi.multiignore) {
@@ -33987,8 +34024,14 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 					if (qfprev.Lnum === 0) {
 						qfprev.Lnum = fields.lnum;
 					}
+					if (qfprev.EndLnum === 0) {
+						qfprev.EndLnum = fields.endlnum;
+					}
 					if (qfprev.Col === 0) {
 						qfprev.Col = fields.col;
+					}
+					if (qfprev.EndCol === 0) {
+						qfprev.EndCol = fields.endcol;
 					}
 					qfprev.Vcol = fields.useviscol;
 				}
@@ -33997,7 +34040,7 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 					s.qi.multiignore = false;
 					$s = -1; return [2, fields];
 				}
-				$s = -1; return [1, ptrType$6.nil];
+				$s = -1; return [1, ptrType$7.nil];
 			/* } else if (strchar("OPQ", idx)) { */ case 24:
 				fields.valid = false;
 				if (fields.namebuf === "") { _v$1 = true; $s = 28; continue s; }
@@ -34028,7 +34071,7 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 				if (s.qi.multiline) {
 					s.qi.multiignore = true;
 				}
-				$s = -1; return [1, ptrType$6.nil];
+				$s = -1; return [1, ptrType$7.nil];
 			}
 		/* } */ case 21:
 		$s = -1; return [3, fields];
@@ -34041,14 +34084,14 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 		efmp = [efmp];
 		errorformat = [errorformat];
 		i = [i];
-		regpat = new bytes.Buffer.ptr(sliceType$4.nil, 0, 0);
+		regpat = new bytes.Buffer.ptr(sliceType$3.nil, 0, 0);
 		efmp[0] = 0;
 		i[0] = 0;
 		incefmp = (function(efmp, errorformat, i) { return function() {
 			i[0] = i[0] + (1) >> 0;
 			efmp[0] = errorformat[0].charCodeAt(i[0]);
 		}; })(efmp, errorformat, i);
-		efm = new Efm.ptr(ptrType$7.nil, false, false, 0);
+		efm = new Efm.ptr(ptrType$8.nil, false, false, 0);
 		regpat.WriteRune(94);
 		/* while (true) { */ case 1:
 			/* if (!(i[0] < errorformat[0].length)) { break; } */ if(!(i[0] < errorformat[0].length)) { $s = 2; continue; }
@@ -34096,7 +34139,7 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 						regpat.WriteRune(43);
 						$s = 17; continue;
 					/* } else { */ case 16:
-						_r = fmt.Errorf("E375: Unsupported %%%v in format string", new sliceType$3([new $String(($encodeRune(efmp[0])))])); /* */ $s = 26; case 26: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+						_r = fmt.Errorf("E375: Unsupported %%%v in format string", new sliceType$4([new $String(($encodeRune(efmp[0])))])); /* */ $s = 26; case 26: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
 						$s = -1; return [ptrType.nil, _r];
 					/* } */ case 17:
 					$s = 13; continue;
@@ -34127,7 +34170,7 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 						efm.prefix = efmp[0];
 						$s = 34; continue;
 					/* } else { */ case 33:
-						_r$1 = fmt.Errorf("E376: Invalid %%%v in format string prefix", new sliceType$3([new $String(($encodeRune(efmp[0])))])); /* */ $s = 35; case 35: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+						_r$1 = fmt.Errorf("E376: Invalid %%%v in format string prefix", new sliceType$4([new $String(($encodeRune(efmp[0])))])); /* */ $s = 35; case 35: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 						$s = -1; return [ptrType.nil, _r$1];
 					/* } */ case 34:
 				/* } */ case 13:
@@ -34166,9 +34209,9 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 		_r = efm.regex.FindStringSubmatch(s); /* */ $s = 1; case 1: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
 		ms = _r;
 		if (ms.$length === 0) {
-			$s = -1; return ptrType$5.nil;
+			$s = -1; return ptrType$6.nil;
 		}
-		match = new Match.ptr("", 0, 0, 0, 0, "", "", "", 0, "");
+		match = new Match.ptr("", 0, 0, 0, 0, "", "", "", 0, "", 0, 0);
 		names = efm.regex.SubexpNames();
 		_ref = names;
 		_i = 0;
@@ -34188,8 +34231,12 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 				match.N = mustAtoI(m);
 			} else if (_1 === ("l")) {
 				match.L = mustAtoI(m);
+			} else if (_1 === ("e")) {
+				match.E = mustAtoI(m);
 			} else if (_1 === ("c")) {
 				match.C = mustAtoI(m);
+			} else if (_1 === ("k")) {
+				match.K = mustAtoI(m);
 			} else if (_1 === ("t")) {
 				match.T = m.charCodeAt(0);
 			} else if (_1 === ("m")) {
@@ -34211,7 +34258,7 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 	Efm.prototype.Match = function(s) { return this.$val.Match(s); };
 	strchar = function(chars, c) {
 		var c, chars;
-		return bytes.ContainsAny(new sliceType$4([c]), chars);
+		return bytes.ContainsAny(new sliceType$3([c]), chars);
 	};
 	mustAtoI = function(s) {
 		var _tuple, i, s;
@@ -34219,17 +34266,17 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 		i = _tuple[0];
 		return i;
 	};
-	ptrType$1.methods = [{prop: "NewScanner", name: "NewScanner", pkg: "", typ: $funcType([io.Reader], [ptrType$8], false)}];
-	ptrType$8.methods = [{prop: "Scan", name: "Scan", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "Entry", name: "Entry", pkg: "", typ: $funcType([], [ptrType$4], false)}, {prop: "parseLine", name: "parseLine", pkg: "github.com/reviewdog/errorformat", typ: $funcType([$String], [qfstatus, ptrType$6], false)}, {prop: "parseLineInternal", name: "parseLineInternal", pkg: "github.com/reviewdog/errorformat", typ: $funcType([$String, $Int], [qfstatus, ptrType$6], false)}];
+	ptrType$1.methods = [{prop: "NewScanner", name: "NewScanner", pkg: "", typ: $funcType([io.Reader], [ptrType$9], false)}];
+	ptrType$9.methods = [{prop: "Scan", name: "Scan", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "Entry", name: "Entry", pkg: "", typ: $funcType([], [ptrType$4], false)}, {prop: "parseLine", name: "parseLine", pkg: "github.com/reviewdog/errorformat", typ: $funcType([$String], [qfstatus, ptrType$7], false)}, {prop: "parseLineInternal", name: "parseLineInternal", pkg: "github.com/reviewdog/errorformat", typ: $funcType([$String, $Int], [qfstatus, ptrType$7], false)}];
 	ptrType$4.methods = [{prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "Types", name: "Types", pkg: "", typ: $funcType([], [$String], false)}];
-	ptrType.methods = [{prop: "Match", name: "Match", pkg: "", typ: $funcType([$String], [ptrType$5], false)}];
+	ptrType.methods = [{prop: "Match", name: "Match", pkg: "", typ: $funcType([$String], [ptrType$6], false)}];
 	Errorformat.init("", [{prop: "Efms", name: "Efms", embedded: false, exported: true, typ: sliceType, tag: ""}]);
 	Scanner.init("github.com/reviewdog/errorformat", [{prop: "Errorformat", name: "Errorformat", embedded: true, exported: true, typ: ptrType$1, tag: ""}, {prop: "source", name: "source", embedded: false, exported: false, typ: ptrType$2, tag: ""}, {prop: "qi", name: "qi", embedded: false, exported: false, typ: ptrType$3, tag: ""}, {prop: "entry", name: "entry", embedded: false, exported: false, typ: ptrType$4, tag: ""}, {prop: "mlpoped", name: "mlpoped", embedded: false, exported: false, typ: $Bool, tag: ""}]);
 	qfinfo.init("github.com/reviewdog/errorformat", [{prop: "filestack", name: "filestack", embedded: false, exported: false, typ: sliceType$1, tag: ""}, {prop: "currfile", name: "currfile", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "dirstack", name: "dirstack", embedded: false, exported: false, typ: sliceType$1, tag: ""}, {prop: "directory", name: "directory", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "multiscan", name: "multiscan", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "multiline", name: "multiline", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "multiignore", name: "multiignore", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "qflist", name: "qflist", embedded: false, exported: false, typ: sliceType$2, tag: ""}]);
-	qffields.init("github.com/reviewdog/errorformat", [{prop: "namebuf", name: "namebuf", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "errmsg", name: "errmsg", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "lnum", name: "lnum", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "col", name: "col", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "useviscol", name: "useviscol", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "pattern", name: "pattern", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "enr", name: "enr", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "etype", name: "etype", embedded: false, exported: false, typ: $Uint8, tag: ""}, {prop: "valid", name: "valid", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "lines", name: "lines", embedded: false, exported: false, typ: sliceType$1, tag: ""}]);
-	Entry.init("", [{prop: "Filename", name: "Filename", embedded: false, exported: true, typ: $String, tag: "json:\"filename\""}, {prop: "Lnum", name: "Lnum", embedded: false, exported: true, typ: $Int, tag: "json:\"lnum\""}, {prop: "Col", name: "Col", embedded: false, exported: true, typ: $Int, tag: "json:\"col\""}, {prop: "Vcol", name: "Vcol", embedded: false, exported: true, typ: $Bool, tag: "json:\"vcol\""}, {prop: "Nr", name: "Nr", embedded: false, exported: true, typ: $Int, tag: "json:\"nr\""}, {prop: "Pattern", name: "Pattern", embedded: false, exported: true, typ: $String, tag: "json:\"pattern\""}, {prop: "Text", name: "Text", embedded: false, exported: true, typ: $String, tag: "json:\"text\""}, {prop: "Type", name: "Type", embedded: false, exported: true, typ: $Int32, tag: "json:\"type\""}, {prop: "Valid", name: "Valid", embedded: false, exported: true, typ: $Bool, tag: "json:\"valid\""}, {prop: "Lines", name: "Lines", embedded: false, exported: true, typ: sliceType$1, tag: "json:\"lines\""}]);
-	Efm.init("github.com/reviewdog/errorformat", [{prop: "regex", name: "regex", embedded: false, exported: false, typ: ptrType$7, tag: ""}, {prop: "flagplus", name: "flagplus", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "flagminus", name: "flagminus", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "prefix", name: "prefix", embedded: false, exported: false, typ: $Uint8, tag: ""}]);
-	Match.init("", [{prop: "F", name: "F", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "N", name: "N", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "L", name: "L", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "C", name: "C", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "T", name: "T", embedded: false, exported: true, typ: $Uint8, tag: ""}, {prop: "M", name: "M", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "R", name: "R", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "P", name: "P", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "V", name: "V", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "S", name: "S", embedded: false, exported: true, typ: $String, tag: ""}]);
+	qffields.init("github.com/reviewdog/errorformat", [{prop: "namebuf", name: "namebuf", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "errmsg", name: "errmsg", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "lnum", name: "lnum", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "col", name: "col", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "endlnum", name: "endlnum", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "endcol", name: "endcol", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "useviscol", name: "useviscol", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "pattern", name: "pattern", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "enr", name: "enr", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "etype", name: "etype", embedded: false, exported: false, typ: $Uint8, tag: ""}, {prop: "valid", name: "valid", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "lines", name: "lines", embedded: false, exported: false, typ: sliceType$1, tag: ""}]);
+	Entry.init("", [{prop: "Filename", name: "Filename", embedded: false, exported: true, typ: $String, tag: "json:\"filename\""}, {prop: "Lnum", name: "Lnum", embedded: false, exported: true, typ: $Int, tag: "json:\"lnum\""}, {prop: "EndLnum", name: "EndLnum", embedded: false, exported: true, typ: $Int, tag: "json:\"end_lnum\""}, {prop: "Col", name: "Col", embedded: false, exported: true, typ: $Int, tag: "json:\"col\""}, {prop: "EndCol", name: "EndCol", embedded: false, exported: true, typ: $Int, tag: "json:\"end_col\""}, {prop: "Vcol", name: "Vcol", embedded: false, exported: true, typ: $Bool, tag: "json:\"vcol\""}, {prop: "Nr", name: "Nr", embedded: false, exported: true, typ: $Int, tag: "json:\"nr\""}, {prop: "Pattern", name: "Pattern", embedded: false, exported: true, typ: $String, tag: "json:\"pattern\""}, {prop: "Text", name: "Text", embedded: false, exported: true, typ: $String, tag: "json:\"text\""}, {prop: "Type", name: "Type", embedded: false, exported: true, typ: $Int32, tag: "json:\"type\""}, {prop: "Valid", name: "Valid", embedded: false, exported: true, typ: $Bool, tag: "json:\"valid\""}, {prop: "Lines", name: "Lines", embedded: false, exported: true, typ: sliceType$1, tag: "json:\"lines\""}]);
+	Efm.init("github.com/reviewdog/errorformat", [{prop: "regex", name: "regex", embedded: false, exported: false, typ: ptrType$8, tag: ""}, {prop: "flagplus", name: "flagplus", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "flagminus", name: "flagminus", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "prefix", name: "prefix", embedded: false, exported: false, typ: $Uint8, tag: ""}]);
+	Match.init("", [{prop: "F", name: "F", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "N", name: "N", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "L", name: "L", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "C", name: "C", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "T", name: "T", embedded: false, exported: true, typ: $Uint8, tag: ""}, {prop: "M", name: "M", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "R", name: "R", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "P", name: "P", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "V", name: "V", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "S", name: "S", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "E", name: "E", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "K", name: "K", embedded: false, exported: true, typ: $Int, tag: ""}]);
 	$init = function() {
 		$pkg.$init = function() {};
 		/* */ var $f, $c = false, $s = 0, $r; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
@@ -34241,7 +34288,7 @@ $packages["github.com/reviewdog/errorformat"] = (function() {
 		$r = regexp.$init(); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$r = strconv.$init(); /* */ $s = 7; case 7: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$r = strings.$init(); /* */ $s = 8; case 8: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		fmtpattern = $makeMap($Uint8.keyFor, [{ k: 102, v: "(?P<f>(?:[[:alpha:]]:)?(?:\\\\ |[^ ])+?)" }, { k: 110, v: "(?P<n>\\d+)" }, { k: 108, v: "(?P<l>\\d+)" }, { k: 99, v: "(?P<c>\\d+)" }, { k: 116, v: "(?P<t>.)" }, { k: 109, v: "(?P<m>.+)" }, { k: 114, v: "(?P<r>.*)" }, { k: 112, v: "(?P<p>[- \t.]*)" }, { k: 118, v: "(?P<v>\\d+)" }, { k: 115, v: "(?P<s>.+)" }]);
+		fmtpattern = $makeMap($Uint8.keyFor, [{ k: 102, v: "(?P<f>(?:[[:alpha:]]:)?(?:\\\\ |[^ ])+?)" }, { k: 110, v: "(?P<n>\\d+)" }, { k: 108, v: "(?P<l>\\d+)" }, { k: 101, v: "(?P<e>\\d+)" }, { k: 99, v: "(?P<c>\\d+)" }, { k: 107, v: "(?P<k>\\d+)" }, { k: 116, v: "(?P<t>.)" }, { k: 109, v: "(?P<m>.+)" }, { k: 114, v: "(?P<r>.*)" }, { k: 112, v: "(?P<p>[- \t.]*)" }, { k: 118, v: "(?P<v>\\d+)" }, { k: 115, v: "(?P<s>.+)" }]);
 		fileexists = (function(filename) {
 			var filename;
 			return true;
