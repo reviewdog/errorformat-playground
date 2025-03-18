@@ -42,3 +42,5 @@ github.com/reviewdog/errorformat v0.0.0-20240311054359-739e471a49b3 h1:lV04V4ovH
 github.com/reviewdog/errorformat v0.0.0-20240311054359-739e471a49b3/go.mod h1:AqhrP0G7F9YRROF10JQwdd4cNO8bdm6bY6KzcOc3Cp8=
 github.com/reviewdog/errorformat v0.0.0-20240608101709-1d3280ed6bd4 h1:wFzV+/KigR9v01F8+cK/QyaMg6NgyfOOZaSquborhpY=
 github.com/reviewdog/errorformat v0.0.0-20240608101709-1d3280ed6bd4/go.mod h1:AqhrP0G7F9YRROF10JQwdd4cNO8bdm6bY6KzcOc3Cp8=
+github.com/reviewdog/errorformat v0.0.0-20250318114032-7c4837d1ce3c h1:wzGFR5lWeiVejQXCVgHTaVpuKUiRn++w8XDEhfxkUE4=
+github.com/reviewdog/errorformat v0.0.0-20250318114032-7c4837d1ce3c/go.mod h1:AqhrP0G7F9YRROF10JQwdd4cNO8bdm6bY6KzcOc3Cp8=
