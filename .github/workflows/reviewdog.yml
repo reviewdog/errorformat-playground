@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: stylelint-github
-        uses: reviewdog/action-stylelint@3957468a0ecd893d96e59774122c860fa98b0f82 # v1.30.0
+        uses: reviewdog/action-stylelint@141932ac62d4ea66e15b79de824ff44d0def0b0b # v1.33.0
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
