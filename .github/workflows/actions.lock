@@ -6,7 +6,7 @@ workflows:
     '.github/workflows/reviewdog.yml':
         - 'actions/checkout@v7.0.1'
         - 'reviewdog/action-eslint@v1.33.2'
-        - 'reviewdog/action-stylelint@v1.30.0'
+        - 'reviewdog/action-stylelint@v1.33.0'
 dependencies:
     'actions/checkout@v7.0.1':
         ref: 'v7.0.1'
@@ -18,8 +18,8 @@ dependencies:
         commit: 'sha1-2fee6dd72a5419ff4113f694e2068d2a03bb35dd'
         owner_id: 48765237
         repo_id: 210385198
-    'reviewdog/action-stylelint@v1.30.0':
-        ref: 'v1.30.0'
-        commit: 'sha1-3957468a0ecd893d96e59774122c860fa98b0f82'
+    'reviewdog/action-stylelint@v1.33.0':
+        ref: 'v1.33.0'
+        commit: 'sha1-141932ac62d4ea66e15b79de824ff44d0def0b0b'
         owner_id: 48765237
         repo_id: 210274153
